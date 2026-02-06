@@ -2,9 +2,15 @@ import type { BearPost } from "./types"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001"
 
+// Headers to bypass ngrok browser warning
+const fetchHeaders = {
+  'Content-Type': 'application/json',
+  'ngrok-skip-browser-warning': 'true'
+}
+
 export async function getPosts(): Promise<BearPost[]> {
   try {
-    const response = await fetch(`${API_URL}/api/posts`)
+    const response = await fetch(`${API_URL}/api/posts`, { headers: fetchHeaders })
     if (!response.ok) return []
     return await response.json()
   } catch {
@@ -16,7 +22,7 @@ export async function addPost(post: BearPost): Promise<BearPost[]> {
   try {
     await fetch(`${API_URL}/api/posts`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: fetchHeaders,
       body: JSON.stringify(post),
     })
     return await getPosts()
@@ -29,7 +35,7 @@ export async function updatePost(id: string, updates: Partial<BearPost>): Promis
   try {
     await fetch(`${API_URL}/api/posts/${id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: fetchHeaders,
       body: JSON.stringify(updates),
     })
     return await getPosts()
@@ -42,6 +48,7 @@ export async function upvotePost(id: string): Promise<BearPost[]> {
   try {
     await fetch(`${API_URL}/api/posts/${id}/upvote`, {
       method: "POST",
+      headers: fetchHeaders,
     })
     return await getPosts()
   } catch {
@@ -56,7 +63,7 @@ export async function addComment(
   try {
     await fetch(`${API_URL}/api/posts/${postId}/comments`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: fetchHeaders,
       body: JSON.stringify(comment),
     })
   } catch {
@@ -68,7 +75,7 @@ export async function getComments(
   postId: string
 ): Promise<{ id: string; author: string; text: string; createdAt: string }[]> {
   try {
-    const response = await fetch(`${API_URL}/api/posts/${postId}/comments`)
+    const response = await fetch(`${API_URL}/api/posts/${postId}/comments`, { headers: fetchHeaders })
     if (!response.ok) return []
     return await response.json()
   } catch {
@@ -85,7 +92,7 @@ export interface VideoInfo {
 
 export async function getVideos(): Promise<VideoInfo[]> {
   try {
-    const response = await fetch(`${API_URL}/api/videos`)
+    const response = await fetch(`${API_URL}/api/videos`, { headers: fetchHeaders })
     if (!response.ok) return []
     return await response.json()
   } catch {

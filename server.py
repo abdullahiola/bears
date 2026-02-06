@@ -136,6 +136,13 @@ def serve_video(filename):
 if __name__ == '__main__':
     port = 5001
     
+    # Kill any existing ngrok tunnels first
+    print("Cleaning up existing ngrok tunnels...")
+    try:
+        ngrok.kill()
+    except:
+        pass
+    
     # Start ngrok tunnel
     print("Starting ngrok tunnel...")
     try:
@@ -146,6 +153,9 @@ if __name__ == '__main__':
         print(f"Local:  http://localhost:{port}")
         print(f"Public: {public_url}")
         print(f"{'='*50}")
+        print(f"\n⚠️  ADD THIS TO VERCEL ENV:")
+        print(f"   NEXT_PUBLIC_API_URL={public_url}")
+        print(f"{'='*50}")
         print(f"\nVideos folder: {VIDEOS_DIR}")
         print(f"Data file: {DATA_FILE}")
         print(f"\nDrop .mp4 files in the videos folder to add reels!")
@@ -154,4 +164,5 @@ if __name__ == '__main__':
         print(f"ngrok error (server still works locally): {e}")
         print(f"\nRunning on http://localhost:{port}")
     
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True, use_reloader=False)
+
