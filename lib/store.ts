@@ -101,9 +101,9 @@ export async function getVideos(): Promise<VideoInfo[]> {
 }
 
 export function getVideoUrl(path: string): string {
-  // Use local API proxy to bypass ngrok warning page
-  // The proxy adds the ngrok-skip-browser-warning header
-  return `/api${path}`
+  // Serve videos directly from public folder (no proxy needed)
+  // Videos are copied to public/videos/ at build time
+  return path
 }
 
 // Legacy function for compatibility (now a no-op since we use API)

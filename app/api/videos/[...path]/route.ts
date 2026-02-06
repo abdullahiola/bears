@@ -1,7 +1,9 @@
-import { NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-// Use Edge runtime for streaming support and no body size limit
-export const runtime = 'edge'
+// Use Node.js runtime for localhost access during development
+export const runtime = 'nodejs'
+// Disable Next.js body parsing to allow video streaming
+export const dynamic = 'force-dynamic'
 
 export async function GET(
     request: NextRequest,
@@ -25,33 +27,28 @@ export async function GET(
         const response = await fetch(`${apiUrl}/videos/${videoPath}`, { headers })
 
         if (!response.ok && response.status !== 206) {
-            return new Response(JSON.stringify({ error: 'Video not found' }), {
-                status: 404,
-                headers: { 'Content-Type': 'application/json' }
-            })
+            return NextResponse.json({ error: 'Video not found' }, { status: 404 })
         }
 
-        // Stream the response directly (Edge runtime supports this)
+        // Get the video data as an ArrayBuffer
+        const videoBuffer = await response.arrayBuffer()
+
+        // Build response headers
         const responseHeaders = new Headers()
         responseHeaders.set('Content-Type', response.headers.get('content-type') || 'video/mp4')
         responseHeaders.set('Accept-Ranges', 'bytes')
         responseHeaders.set('Cache-Control', 'public, max-age=3600')
+        responseHeaders.set('Content-Length', videoBuffer.byteLength.toString())
 
-        const contentLength = response.headers.get('content-length')
         const contentRange = response.headers.get('content-range')
-
-        if (contentLength) responseHeaders.set('Content-Length', contentLength)
         if (contentRange) responseHeaders.set('Content-Range', contentRange)
 
-        return new Response(response.body, {
+        return new NextResponse(videoBuffer, {
             status: response.status,
             headers: responseHeaders,
         })
     } catch (error) {
         console.error('Video proxy error:', error)
-        return new Response(JSON.stringify({ error: 'Failed to fetch video' }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' }
-        })
+        return NextResponse.json({ error: 'Failed to fetch video' }, { status: 500 })
     }
 }

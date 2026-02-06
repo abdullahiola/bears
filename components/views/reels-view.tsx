@@ -40,8 +40,7 @@ const STOCK_REELS: Reel[] = [
     tag: "MEGA BEAR",
     tagColor: "bg-bear-crimson text-primary-foreground",
     score: 97,
-    videoUrl:
-      "https://videos.pexels.com/video-files/7579968/7579968-uhd_1440_2560_25fps.mp4",
+    videoUrl: "/videos/Bear-Market-Crash.mp4",
   },
   {
     id: "2",
@@ -51,8 +50,7 @@ const STOCK_REELS: Reel[] = [
     tag: "FINANCIAL DOOM",
     tagColor: "bg-bear-blood text-primary-foreground",
     score: 91,
-    videoUrl:
-      "https://videos.pexels.com/video-files/7947464/7947464-uhd_1440_2560_25fps.mp4",
+    videoUrl: "/videos/Bear-Market-Rally.mp4",
   },
   {
     id: "3",
@@ -62,8 +60,7 @@ const STOCK_REELS: Reel[] = [
     tag: "ALL IN SHORT",
     tagColor: "bg-primary text-primary-foreground",
     score: 84,
-    videoUrl:
-      "https://videos.pexels.com/video-files/6801940/6801940-uhd_1440_2560_25fps.mp4",
+    videoUrl: "/videos/Brick-By-Brick.mp4",
   },
   {
     id: "4",
@@ -73,8 +70,7 @@ const STOCK_REELS: Reel[] = [
     tag: "HOUSING",
     tagColor: "bg-bear-crimson text-primary-foreground",
     score: 88,
-    videoUrl:
-      "https://videos.pexels.com/video-files/6774204/6774204-uhd_1440_2560_25fps.mp4",
+    videoUrl: "/videos/Market-vs-Trader.mp4",
   },
   {
     id: "5",
@@ -84,8 +80,7 @@ const STOCK_REELS: Reel[] = [
     tag: "VOLATILITY",
     tagColor: "bg-bear-blood text-primary-foreground",
     score: 79,
-    videoUrl:
-      "https://videos.pexels.com/video-files/7579554/7579554-uhd_1440_2560_25fps.mp4",
+    videoUrl: "/videos/One-Swap-Away.mp4",
   },
   {
     id: "6",
@@ -95,8 +90,7 @@ const STOCK_REELS: Reel[] = [
     tag: "DOLLAR DEATH",
     tagColor: "bg-bear-crimson text-primary-foreground",
     score: 93,
-    videoUrl:
-      "https://videos.pexels.com/video-files/6801489/6801489-uhd_1440_2560_25fps.mp4",
+    videoUrl: "/videos/Sleep-Or-Sell.mp4",
   },
   {
     id: "7",
@@ -106,8 +100,7 @@ const STOCK_REELS: Reel[] = [
     tag: "RECESSION",
     tagColor: "bg-primary text-primary-foreground",
     score: 86,
-    videoUrl:
-      "https://videos.pexels.com/video-files/7947442/7947442-uhd_1440_2560_25fps.mp4",
+    videoUrl: "/videos/TJR-Trades-Analysis.mp4",
   },
 ]
 
