@@ -1,103 +1,153 @@
 {
   "posts": [
     {
-      "id": "8456e49d-485b-4fa2-8084-cc8101581e78",
-      "author": "yooo",
-      "statement": "fuck this shittt",
-      "score": null,
-      "rank": null,
-      "reasoning": null,
-      "createdAt": "2026-02-06T13:03:16.606Z",
-      "upvotes": 3,
-      "comments": []
-    },
-    {
       "id": "post-001",
-      "author": "DoomTrader99",
-      "statement": "SPY will hit $200 by March 2026. The Fed is trapped between inflation and recession, and they'll choose recession every time. Commercial real estate defaults are accelerating, bank reserves are depleting, and consumer credit is maxed out. This isn't fear - it's math.",
-      "score": 97,
+      "author": "PanicSeller420",
+      "statement": "Just sold my entire portfolio at the bottom. Again. This time feels different though - the bottom is definitely lower. SPY 180 by April or I'll eat my paper hands on livestream.",
+      "score": 99,
       "rank": "Apocalypse Bear",
-      "reasoning": "Exceptional bearish thesis with strong macro fundamentals. Multiple converging indicators support the prediction.",
-      "createdAt": "2026-02-06T10:00:00.000Z",
-      "upvotes": 143,
+      "reasoning": "Peak capitulation energy with impressive commitment to being wrong. True degen behavior.",
+      "createdAt": "2026-02-06T12:00:00.000Z",
+      "upvotes": 420,
       "comments": [
         {
           "id": "c001",
-          "author": "ShortKing",
-          "text": "Finally someone speaking the truth. My puts are ready.",
-          "createdAt": "2026-02-06T10:15:00.000Z"
-        },
-        {
-          "id": "c002",
-          "author": "BearMomma",
-          "text": "The CRE data is terrifying. Office vacancy rates in major metros are at all-time highs.",
-          "createdAt": "2026-02-06T10:30:00.000Z"
+          "author": "BagholderAnonymous",
+          "text": "This is the way. I sold at the exact bottom of 2020, 2022, and now 2026. It's a gift.",
+          "createdAt": "2026-02-06T12:15:00.000Z"
         }
       ]
     },
     {
       "id": "post-002",
-      "author": "CrashProphet",
-      "statement": "The banking system is about to experience a liquidity crisis worse than 2008. Regional banks are sitting on $650B in unrealized losses. When commercial real estate loans start defaulting in Q2, we'll see a cascade of bank failures.",
-      "score": 91,
+      "author": "DoomScrollerPrime",
+      "statement": "My cat walked across my keyboard and accidentally bought SPY puts. He's now up 847% this week. I've been studying charts for 15 years and I'm down 60%. The simulation is broken.",
+      "score": 95,
       "rank": "Kodiak",
-      "reasoning": "Strong financial sector analysis with specific data points. Timeline prediction adds conviction.",
-      "createdAt": "2026-02-06T09:30:00.000Z",
-      "upvotes": 89,
+      "reasoning": "Compelling evidence that the market is indeed a casino. Cat-based trading strategies remain undefeated.",
+      "createdAt": "2026-02-06T11:30:00.000Z",
+      "upvotes": 312,
       "comments": [
         {
+          "id": "c002",
+          "author": "ChartWizard",
+          "text": "Your cat sees the patterns we can't. Hire him as a financial advisor.",
+          "createdAt": "2026-02-06T11:45:00.000Z"
+        },
+        {
           "id": "c003",
-          "author": "GoldBugBear",
-          "text": "This is why I'm 50% in physical gold. Banks are zombies walking.",
-          "createdAt": "2026-02-06T09:45:00.000Z"
+          "author": "CatTrader",
+          "text": "My cat does the same thing. We should start a hedge fund.",
+          "createdAt": "2026-02-06T12:00:00.000Z"
         }
       ]
     },
     {
       "id": "post-003",
-      "author": "RecessionRadar",
-      "statement": "Every leading indicator is screaming recession: yield curve inverted for 18 months, LEI declining for 22 straight months, credit conditions tightening. The only thing holding this market up is passive flows and buybacks. When earnings miss, it's over.",
-      "score": 86,
+      "author": "LeverageLarry",
+      "statement": "Just took out a 3rd mortgage to buy 0DTE puts. When the market crashes from exactly here in the next 4 hours, I'll be a billionaire. If not, I'm moving to my mom's basement. Either way, I've already won.",
+      "score": 93,
       "rank": "Polar Bear",
-      "reasoning": "Solid technical analysis backed by multiple data points. Good understanding of market mechanics.",
-      "createdAt": "2026-02-06T08:00:00.000Z",
-      "upvotes": 67,
-      "comments": []
-    },
-    {
-      "id": "post-004",
-      "author": "VolatilityKing",
-      "statement": "VIX is going to 80 this year. We're at historic lows in realized vol while the world is literally on fire. Geopolitical risk, election uncertainty, and a Fed pivot incoming. Option premiums are criminally cheap right now.",
-      "score": 79,
-      "rank": "Grizzly",
-      "reasoning": "Interesting volatility thesis but timeline is vague. VIX predictions are notoriously difficult.",
-      "createdAt": "2026-02-06T07:00:00.000Z",
-      "upvotes": 45,
+      "reasoning": "Outstanding risk management. The mom's basement hedge is actually quite solid.",
+      "createdAt": "2026-02-06T10:00:00.000Z",
+      "upvotes": 267,
       "comments": [
         {
           "id": "c004",
-          "author": "BearMomma",
-          "text": "Loaded up on VIX calls last week. Let's see what happens.",
-          "createdAt": "2026-02-06T07:30:00.000Z"
-        },
+          "author": "GambleGary",
+          "text": "This is literally me every Friday. We should start a support group.",
+          "createdAt": "2026-02-06T10:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "post-004",
+      "author": "TechnicallyBroke",
+      "statement": "I drew 47 lines on the SPY chart and they all point to zero. This is not financial advice but also if you don't sell right now you're literally throwing money into a volcano. The head and shoulders pattern has developed a third shoulder which means certain death.",
+      "score": 89,
+      "rank": "Grizzly",
+      "reasoning": "Three-shouldered patterns are indeed rare. The volcano metaphor adds scientific credibility.",
+      "createdAt": "2026-02-06T09:00:00.000Z",
+      "upvotes": 198,
+      "comments": [
         {
           "id": "c005",
-          "author": "DoomTrader99",
-          "text": "80 might be conservative if we get a real black swan.",
-          "createdAt": "2026-02-06T08:00:00.000Z"
+          "author": "CrayonEater",
+          "text": "I also see the three shoulders. And possibly a hidden fourth shoulder. DEFCON 1.",
+          "createdAt": "2026-02-06T09:20:00.000Z"
         }
       ]
     },
     {
       "id": "post-005",
-      "author": "BearMomma",
-      "statement": "Housing is 2008 on steroids. Homes sitting on market for 6+ months in most metros. Builders offering 10% discounts and paying all closing costs. Insurance costs making Florida and California unaffordable. This is the top.",
+      "author": "NotAProfessional",
+      "statement": "The economy is fine. That's how I know we're doomed. Every time things look okay, something explodes. I'm shorting happiness itself. Long on existential dread. This is the trade.",
+      "score": 91,
+      "rank": "Polar Bear",
+      "reasoning": "Contrarian thesis on positive sentiment is historically accurate. Shorting happiness is an innovative new asset class.",
+      "createdAt": "2026-02-06T08:30:00.000Z",
+      "upvotes": 234,
+      "comments": []
+    },
+    {
+      "id": "post-006",
+      "author": "QuantumBear",
+      "statement": "According to my proprietary model (I threw darts at a calendar), the crash will happen on a Tuesday. All Tuesdays are bearish. I've backtested this across 3 weeks of data and it's 67% accurate, which is basically guaranteed.",
+      "score": 86,
+      "rank": "Grizzly",
+      "reasoning": "The dart-throwing methodology has outperformed most hedge funds. Tuesday thesis needs more data.",
+      "createdAt": "2026-02-06T08:00:00.000Z",
+      "upvotes": 156,
+      "comments": [
+        {
+          "id": "c006",
+          "author": "StatisticsSteve",
+          "text": "67% is literally better than coin flipping. You're a genius.",
+          "createdAt": "2026-02-06T08:15:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "post-007",
+      "author": "InflationNation",
+      "statement": "Just paid $47 for a sandwich. The Fed says inflation is transitory. The sandwich disagrees. Short everything, especially sandwiches. We are entering a post-sandwich economy where nobody can afford to eat.",
       "score": 88,
       "rank": "Polar Bear",
-      "reasoning": "Strong regional housing analysis with specific market observations. Insurance angle is often overlooked.",
-      "createdAt": "2026-02-05T22:00:00.000Z",
-      "upvotes": 78,
-      "comments": []
+      "reasoning": "The sandwich index is a legitimate economic indicator. Post-sandwich economy is a bold prediction.",
+      "createdAt": "2026-02-06T07:00:00.000Z",
+      "upvotes": 289,
+      "comments": [
+        {
+          "id": "c007",
+          "author": "BreadBear",
+          "text": "The $47 sandwich is just the beginning. Wait until you see the $80 burrito.",
+          "createdAt": "2026-02-06T07:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "post-008",
+      "author": "ReversePsychology",
+      "statement": "I'm so confident the market will crash that I just went all-in on calls. This guarantees the crash will happen because the universe hates me specifically. You're welcome for my sacrifice.",
+      "score": 94,
+      "rank": "Kodiak",
+      "reasoning": "The inverse-self strategy is proven. Heroic sacrifice for the greater bear community.",
+      "createdAt": "2026-02-06T06:00:00.000Z",
+      "upvotes": 445,
+      "comments": [
+        {
+          "id": "c008",
+          "author": "MarketManipulator",
+          "text": "A true soldier. We salute your calls.",
+          "createdAt": "2026-02-06T06:30:00.000Z"
+        },
+        {
+          "id": "c009",
+          "author": "InverseKing",
+          "text": "This man just guaranteed our puts print. Absolute legend.",
+          "createdAt": "2026-02-06T07:00:00.000Z"
+        }
+      ]
     }
   ],
   "reels": []

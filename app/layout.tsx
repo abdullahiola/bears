@@ -15,6 +15,11 @@ export const metadata: Metadata = {
   title: "Bear Capital Market Forum",
   description:
     "The most bearish forum on the internet. Post your doom takes and get scored on how bearish you really are.",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
 }
 
 export const viewport: Viewport = {
