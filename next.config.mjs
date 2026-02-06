@@ -6,18 +6,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'http://localhost:5001/api/:path*',
-      },
-      {
-        source: '/videos/:path*',
-        destination: 'http://localhost:5001/videos/:path*',
-      },
-    ]
-  },
+  // Allow cross-origin requests in development
+  allowedDevOrigins: ['192.168.1.172'],
 }
 
 export default nextConfig
