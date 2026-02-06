@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react"
 import type { BearPost, ScoreResult } from "@/lib/types"
-import { addPost, getPosts, savePosts, updatePost, upvotePost } from "@/lib/store"
+import { addPost, getPosts, updatePost, upvotePost } from "@/lib/store"
 import { PostForm } from "./post-form"
 import { PostFeed } from "./post-feed"
 import { LeftSidebar, type View } from "./left-sidebar"
@@ -21,9 +21,6 @@ import {
   Trophy,
   TrendingDown,
   BarChart3,
-  Bookmark,
-  Users,
-  Settings,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -40,13 +37,21 @@ export function Forum() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [activeView, setActiveView] = useState<View>("feed")
   const [savedIds, setSavedIds] = useState<Set<string>>(new Set())
+  const [isLoading, setIsLoading] = useState(true)
 
+  // Fetch posts from API on mount
   useEffect(() => {
-    setPosts(getPosts())
+    async function fetchPosts() {
+      setIsLoading(true)
+      const data = await getPosts()
+      setPosts(data)
+      setIsLoading(false)
+    }
+    fetchPosts()
   }, [])
 
-  const handleUpvote = useCallback((id: string) => {
-    const updated = upvotePost(id)
+  const handleUpvote = useCallback(async (id: string) => {
+    const updated = await upvotePost(id)
     setPosts(updated)
   }, [])
 
@@ -62,10 +67,12 @@ export function Forum() {
     })
   }, [])
 
-  const handleClearData = useCallback(() => {
-    savePosts([])
-    setPosts([])
+  const handleClearData = useCallback(async () => {
+    // Clear saved IDs (local only)
     setSavedIds(new Set())
+    // Refresh posts from server
+    const data = await getPosts()
+    setPosts(data)
   }, [])
 
   async function handleSubmit(author: string, statement: string) {
@@ -80,9 +87,10 @@ export function Forum() {
       reasoning: null,
       createdAt: new Date().toISOString(),
       upvotes: 0,
+      comments: [],
     }
 
-    const withNew = addPost(newPost)
+    const withNew = await addPost(newPost)
     setPosts(withNew)
 
     try {
@@ -94,7 +102,7 @@ export function Forum() {
 
       if (response.ok) {
         const result: ScoreResult = await response.json()
-        const updated = updatePost(newPost.id, {
+        const updated = await updatePost(newPost.id, {
           score: result.score,
           rank: result.rank,
           reasoning: result.reasoning,
@@ -117,12 +125,18 @@ export function Forum() {
           <>
             <BearReels />
             <PostForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />
-            <PostFeed
-              posts={posts}
-              onUpvote={handleUpvote}
-              onSave={handleSave}
-              savedIds={savedIds}
-            />
+            {isLoading ? (
+              <div className="flex items-center justify-center py-8">
+                <span className="text-muted-foreground">Loading posts...</span>
+              </div>
+            ) : (
+              <PostFeed
+                posts={posts}
+                onUpvote={handleUpvote}
+                onSave={handleSave}
+                savedIds={savedIds}
+              />
+            )}
           </>
         )
       case "reels":

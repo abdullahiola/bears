@@ -1,41 +1,103 @@
 import type { BearPost } from "./types"
 
-const STORAGE_KEY = "bear-capital-posts"
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001"
 
-export function getPosts(): BearPost[] {
-  if (typeof window === "undefined") return []
+export async function getPosts(): Promise<BearPost[]> {
   try {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    return stored ? JSON.parse(stored) : []
+    const response = await fetch(`${API_URL}/api/posts`)
+    if (!response.ok) return []
+    return await response.json()
   } catch {
     return []
   }
 }
 
-export function savePosts(posts: BearPost[]) {
-  if (typeof window === "undefined") return
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(posts))
+export async function addPost(post: BearPost): Promise<BearPost[]> {
+  try {
+    await fetch(`${API_URL}/api/posts`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(post),
+    })
+    return await getPosts()
+  } catch {
+    return []
+  }
 }
 
-export function addPost(post: BearPost): BearPost[] {
-  const posts = getPosts()
-  const updated = [post, ...posts]
-  savePosts(updated)
-  return updated
+export async function updatePost(id: string, updates: Partial<BearPost>): Promise<BearPost[]> {
+  try {
+    await fetch(`${API_URL}/api/posts/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updates),
+    })
+    return await getPosts()
+  } catch {
+    return []
+  }
 }
 
-export function updatePost(id: string, updates: Partial<BearPost>): BearPost[] {
-  const posts = getPosts()
-  const updated = posts.map((p) => (p.id === id ? { ...p, ...updates } : p))
-  savePosts(updated)
-  return updated
+export async function upvotePost(id: string): Promise<BearPost[]> {
+  try {
+    await fetch(`${API_URL}/api/posts/${id}/upvote`, {
+      method: "POST",
+    })
+    return await getPosts()
+  } catch {
+    return []
+  }
 }
 
-export function upvotePost(id: string): BearPost[] {
-  const posts = getPosts()
-  const updated = posts.map((p) =>
-    p.id === id ? { ...p, upvotes: p.upvotes + 1 } : p
-  )
-  savePosts(updated)
-  return updated
+export async function addComment(
+  postId: string,
+  comment: { id: string; author: string; text: string; createdAt: string }
+): Promise<void> {
+  try {
+    await fetch(`${API_URL}/api/posts/${postId}/comments`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(comment),
+    })
+  } catch {
+    // Comment failed silently
+  }
+}
+
+export async function getComments(
+  postId: string
+): Promise<{ id: string; author: string; text: string; createdAt: string }[]> {
+  try {
+    const response = await fetch(`${API_URL}/api/posts/${postId}/comments`)
+    if (!response.ok) return []
+    return await response.json()
+  } catch {
+    return []
+  }
+}
+
+export interface VideoInfo {
+  id: string
+  filename: string
+  title: string
+  url: string
+}
+
+export async function getVideos(): Promise<VideoInfo[]> {
+  try {
+    const response = await fetch(`${API_URL}/api/videos`)
+    if (!response.ok) return []
+    return await response.json()
+  } catch {
+    return []
+  }
+}
+
+export function getVideoUrl(path: string): string {
+  return `${API_URL}${path}`
+}
+
+// Legacy function for compatibility (now a no-op since we use API)
+export function savePosts(_posts: BearPost[]) {
+  // No-op - data is now saved via API
 }

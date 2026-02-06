@@ -1,3 +1,10 @@
+export interface Comment {
+  id: string
+  author: string
+  text: string
+  createdAt: string
+}
+
 export interface BearPost {
   id: string
   author: string
@@ -7,6 +14,7 @@ export interface BearPost {
   reasoning: string | null
   createdAt: string
   upvotes: number
+  comments?: Comment[]
 }
 
 export type BearRank =

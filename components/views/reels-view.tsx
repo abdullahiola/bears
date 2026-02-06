@@ -18,6 +18,7 @@ import {
   Upload,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { getVideos, getVideoUrl } from "@/lib/store"
 
 interface Reel {
   id: string
@@ -120,6 +121,27 @@ export function ReelsView() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
+  // Fetch videos from server on mount
+  useEffect(() => {
+    async function fetchVideos() {
+      const serverVideos = await getVideos()
+      if (serverVideos.length > 0) {
+        const serverReels: Reel[] = serverVideos.map((v) => ({
+          id: `server-${v.id}`,
+          author: "Bear Capital",
+          title: v.title,
+          views: "0",
+          tag: "LOCAL",
+          tagColor: "bg-bear-gold text-background",
+          score: 80 + Math.floor(Math.random() * 15),
+          videoUrl: getVideoUrl(v.url),
+        }))
+        setReels([...serverReels, ...STOCK_REELS])
+      }
+    }
+    fetchVideos()
+  }, [])
+
   const reel = reels[currentIndex]
 
   const goNext = useCallback(() => {
@@ -157,14 +179,14 @@ export function ReelsView() {
   useEffect(() => {
     if (!videoRef.current) return
     videoRef.current.load()
-    videoRef.current.play().catch(() => {})
+    videoRef.current.play().catch(() => { })
     setIsPlaying(true)
   }, [currentIndex])
 
   function togglePlayPause() {
     if (!videoRef.current) return
     if (videoRef.current.paused) {
-      videoRef.current.play().catch(() => {})
+      videoRef.current.play().catch(() => { })
       setIsPlaying(true)
     } else {
       videoRef.current.pause()

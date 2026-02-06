@@ -21,6 +21,7 @@ import {
   Upload,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { getVideos, getVideoUrl } from "@/lib/store"
 
 interface Reel {
   id: string
@@ -121,6 +122,27 @@ export function BearReels() {
   const [reels, setReels] = useState<Reel[]>(STOCK_REELS)
   const [activeReel, setActiveReel] = useState<Reel | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  // Fetch videos from server on mount
+  useEffect(() => {
+    async function fetchVideos() {
+      const serverVideos = await getVideos()
+      if (serverVideos.length > 0) {
+        const serverReels: Reel[] = serverVideos.map((v, i) => ({
+          id: `server-${v.id}`,
+          author: "Bear Capital",
+          title: v.title,
+          views: "0",
+          tag: "LOCAL",
+          tagColor: "bg-bear-gold text-background",
+          score: 80 + Math.floor(Math.random() * 15),
+          videoUrl: getVideoUrl(v.url),
+        }))
+        setReels([...serverReels, ...STOCK_REELS])
+      }
+    }
+    fetchVideos()
+  }, [])
 
   function handleScroll() {
     if (!scrollRef.current) return
@@ -261,7 +283,7 @@ function ReelCard({ reel, onClick }: { reel: Reel; onClick: () => void }) {
     if (!videoRef.current) return
     if (isHovering) {
       videoRef.current.currentTime = 0
-      videoRef.current.play().catch(() => {})
+      videoRef.current.play().catch(() => { })
     } else {
       videoRef.current.pause()
     }
@@ -386,14 +408,14 @@ function ReelPlayer({
   useEffect(() => {
     if (!videoRef.current) return
     videoRef.current.load()
-    videoRef.current.play().catch(() => {})
+    videoRef.current.play().catch(() => { })
     setIsPlaying(true)
   }, [currentIndex])
 
   function togglePlayPause() {
     if (!videoRef.current) return
     if (videoRef.current.paused) {
-      videoRef.current.play().catch(() => {})
+      videoRef.current.play().catch(() => { })
       setIsPlaying(true)
     } else {
       videoRef.current.pause()

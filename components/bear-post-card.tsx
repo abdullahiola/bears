@@ -2,7 +2,7 @@
 
 import React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
   ThumbsUp,
   MessageCircle,
@@ -14,7 +14,8 @@ import {
   Copy,
   Check,
 } from "lucide-react"
-import type { BearPost } from "@/lib/types"
+import type { BearPost, Comment } from "@/lib/types"
+import { addComment, getComments } from "@/lib/store"
 import { ScoreBadge } from "./score-badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
@@ -35,16 +36,28 @@ export function BearPostCard({
   isSaved = false,
 }: BearPostCardProps) {
   const [showComments, setShowComments] = useState(false)
-  const [comments, setComments] = useState<
-    { id: string; author: string; text: string; createdAt: string }[]
-  >([])
+  const [comments, setComments] = useState<Comment[]>([])
   const [commentText, setCommentText] = useState("")
   const [copied, setCopied] = useState(false)
   const [upvoted, setUpvoted] = useState(false)
+  const [isLoadingComments, setIsLoadingComments] = useState(false)
 
   const timeAgo = formatDistanceToNow(new Date(post.createdAt), {
     addSuffix: true,
   })
+
+  // Load comments from API when comments section is opened
+  useEffect(() => {
+    async function fetchComments() {
+      if (showComments && comments.length === 0) {
+        setIsLoadingComments(true)
+        const data = await getComments(post.id)
+        setComments(data)
+        setIsLoadingComments(false)
+      }
+    }
+    fetchComments()
+  }, [showComments, post.id, comments.length])
 
   function handleUpvote() {
     if (upvoted) return
@@ -52,19 +65,23 @@ export function BearPostCard({
     onUpvote(post.id)
   }
 
-  function handleComment(e: React.FormEvent) {
+  async function handleComment(e: React.FormEvent) {
     e.preventDefault()
     if (!commentText.trim()) return
-    setComments((prev) => [
-      ...prev,
-      {
-        id: crypto.randomUUID(),
-        author: "AnonBear",
-        text: commentText.trim(),
-        createdAt: new Date().toISOString(),
-      },
-    ])
+
+    const newComment: Comment = {
+      id: crypto.randomUUID(),
+      author: "AnonBear",
+      text: commentText.trim(),
+      createdAt: new Date().toISOString(),
+    }
+
+    // Optimistic update
+    setComments((prev) => [...prev, newComment])
     setCommentText("")
+
+    // Save to API
+    await addComment(post.id, newComment)
   }
 
   function handleShare() {
@@ -211,6 +228,13 @@ export function BearPostCard({
       {/* Comments section */}
       {showComments && (
         <div className="border-t border-border px-4 py-3">
+          {/* Loading state */}
+          {isLoadingComments && (
+            <div className="mb-3 text-center text-xs text-muted-foreground">
+              Loading comments...
+            </div>
+          )}
+
           {/* Existing comments */}
           {comments.length > 0 && (
             <div className="mb-3 flex flex-col gap-2">

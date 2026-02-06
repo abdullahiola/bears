@@ -1,0 +1,104 @@
+{
+  "posts": [
+    {
+      "id": "8456e49d-485b-4fa2-8084-cc8101581e78",
+      "author": "yooo",
+      "statement": "fuck this shittt",
+      "score": null,
+      "rank": null,
+      "reasoning": null,
+      "createdAt": "2026-02-06T13:03:16.606Z",
+      "upvotes": 2,
+      "comments": []
+    },
+    {
+      "id": "post-001",
+      "author": "DoomTrader99",
+      "statement": "SPY will hit $200 by March 2026. The Fed is trapped between inflation and recession, and they'll choose recession every time. Commercial real estate defaults are accelerating, bank reserves are depleting, and consumer credit is maxed out. This isn't fear - it's math.",
+      "score": 97,
+      "rank": "Apocalypse Bear",
+      "reasoning": "Exceptional bearish thesis with strong macro fundamentals. Multiple converging indicators support the prediction.",
+      "createdAt": "2026-02-06T10:00:00.000Z",
+      "upvotes": 143,
+      "comments": [
+        {
+          "id": "c001",
+          "author": "ShortKing",
+          "text": "Finally someone speaking the truth. My puts are ready.",
+          "createdAt": "2026-02-06T10:15:00.000Z"
+        },
+        {
+          "id": "c002",
+          "author": "BearMomma",
+          "text": "The CRE data is terrifying. Office vacancy rates in major metros are at all-time highs.",
+          "createdAt": "2026-02-06T10:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "post-002",
+      "author": "CrashProphet",
+      "statement": "The banking system is about to experience a liquidity crisis worse than 2008. Regional banks are sitting on $650B in unrealized losses. When commercial real estate loans start defaulting in Q2, we'll see a cascade of bank failures.",
+      "score": 91,
+      "rank": "Kodiak",
+      "reasoning": "Strong financial sector analysis with specific data points. Timeline prediction adds conviction.",
+      "createdAt": "2026-02-06T09:30:00.000Z",
+      "upvotes": 89,
+      "comments": [
+        {
+          "id": "c003",
+          "author": "GoldBugBear",
+          "text": "This is why I'm 50% in physical gold. Banks are zombies walking.",
+          "createdAt": "2026-02-06T09:45:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "post-003",
+      "author": "RecessionRadar",
+      "statement": "Every leading indicator is screaming recession: yield curve inverted for 18 months, LEI declining for 22 straight months, credit conditions tightening. The only thing holding this market up is passive flows and buybacks. When earnings miss, it's over.",
+      "score": 86,
+      "rank": "Polar Bear",
+      "reasoning": "Solid technical analysis backed by multiple data points. Good understanding of market mechanics.",
+      "createdAt": "2026-02-06T08:00:00.000Z",
+      "upvotes": 67,
+      "comments": []
+    },
+    {
+      "id": "post-004",
+      "author": "VolatilityKing",
+      "statement": "VIX is going to 80 this year. We're at historic lows in realized vol while the world is literally on fire. Geopolitical risk, election uncertainty, and a Fed pivot incoming. Option premiums are criminally cheap right now.",
+      "score": 79,
+      "rank": "Grizzly",
+      "reasoning": "Interesting volatility thesis but timeline is vague. VIX predictions are notoriously difficult.",
+      "createdAt": "2026-02-06T07:00:00.000Z",
+      "upvotes": 45,
+      "comments": [
+        {
+          "id": "c004",
+          "author": "BearMomma",
+          "text": "Loaded up on VIX calls last week. Let's see what happens.",
+          "createdAt": "2026-02-06T07:30:00.000Z"
+        },
+        {
+          "id": "c005",
+          "author": "DoomTrader99",
+          "text": "80 might be conservative if we get a real black swan.",
+          "createdAt": "2026-02-06T08:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "post-005",
+      "author": "BearMomma",
+      "statement": "Housing is 2008 on steroids. Homes sitting on market for 6+ months in most metros. Builders offering 10% discounts and paying all closing costs. Insurance costs making Florida and California unaffordable. This is the top.",
+      "score": 88,
+      "rank": "Polar Bear",
+      "reasoning": "Strong regional housing analysis with specific market observations. Insurance angle is often overlooked.",
+      "createdAt": "2026-02-05T22:00:00.000Z",
+      "upvotes": 78,
+      "comments": []
+    }
+  ],
+  "reels": []
+}
