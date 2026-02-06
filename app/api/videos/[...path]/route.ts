@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
 
-export const runtime = 'nodejs'
-export const dynamic = 'force-dynamic'
+// Use Edge runtime for streaming support and no body size limit
+export const runtime = 'edge'
 
 export async function GET(
     request: NextRequest,
@@ -11,11 +11,9 @@ export async function GET(
     const videoPath = path.join('/')
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001'
 
-    console.log(`Proxying video: ${apiUrl}/videos/${videoPath}`)
-
     try {
         // Forward range header for video streaming
-        const headers: Record<string, string> = {
+        const headers: HeadersInit = {
             'ngrok-skip-browser-warning': 'true',
         }
 
@@ -27,36 +25,33 @@ export async function GET(
         const response = await fetch(`${apiUrl}/videos/${videoPath}`, { headers })
 
         if (!response.ok && response.status !== 206) {
-            console.error(`Video fetch failed: ${response.status}`)
-            return NextResponse.json({ error: 'Video not found' }, { status: 404 })
+            return new Response(JSON.stringify({ error: 'Video not found' }), {
+                status: 404,
+                headers: { 'Content-Type': 'application/json' }
+            })
         }
 
-        const contentType = response.headers.get('content-type') || 'video/mp4'
+        // Stream the response directly (Edge runtime supports this)
+        const responseHeaders = new Headers()
+        responseHeaders.set('Content-Type', response.headers.get('content-type') || 'video/mp4')
+        responseHeaders.set('Accept-Ranges', 'bytes')
+        responseHeaders.set('Cache-Control', 'public, max-age=3600')
+
         const contentLength = response.headers.get('content-length')
         const contentRange = response.headers.get('content-range')
 
-        // For Vercel, we need to buffer the response
-        const buffer = await response.arrayBuffer()
+        if (contentLength) responseHeaders.set('Content-Length', contentLength)
+        if (contentRange) responseHeaders.set('Content-Range', contentRange)
 
-        const responseHeaders: Record<string, string> = {
-            'Content-Type': contentType,
-            'Accept-Ranges': 'bytes',
-            'Cache-Control': 'public, max-age=3600',
-        }
-
-        if (contentLength) {
-            responseHeaders['Content-Length'] = contentLength
-        }
-        if (contentRange) {
-            responseHeaders['Content-Range'] = contentRange
-        }
-
-        return new NextResponse(buffer, {
+        return new Response(response.body, {
             status: response.status,
             headers: responseHeaders,
         })
     } catch (error) {
         console.error('Video proxy error:', error)
-        return NextResponse.json({ error: 'Failed to fetch video' }, { status: 500 })
+        return new Response(JSON.stringify({ error: 'Failed to fetch video' }), {
+            status: 500,
+            headers: { 'Content-Type': 'application/json' }
+        })
     }
 }

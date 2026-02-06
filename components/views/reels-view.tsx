@@ -291,7 +291,6 @@ export function ReelsView() {
             playsInline
             autoPlay
             onTimeUpdate={handleTimeUpdate}
-            crossOrigin="anonymous"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background/70" />
 
@@ -466,7 +465,6 @@ export function ReelsView() {
               muted
               playsInline
               preload="metadata"
-              crossOrigin="anonymous"
             />
             <div className="pointer-events-none absolute inset-0 bg-background/30" />
             <span className="absolute bottom-0.5 right-0.5 font-mono text-[8px] font-bold text-bear-crimson drop-shadow-lg">

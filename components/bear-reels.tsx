@@ -306,7 +306,6 @@ function ReelCard({ reel, onClick }: { reel: Reel; onClick: () => void }) {
         loop
         playsInline
         preload="metadata"
-        crossOrigin="anonymous"
       />
       <div className="pointer-events-none absolute inset-0 bg-background/40" />
 
@@ -488,7 +487,6 @@ function ReelPlayer({
             playsInline
             autoPlay
             onTimeUpdate={handleTimeUpdate}
-            crossOrigin="anonymous"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background/60" />
 
