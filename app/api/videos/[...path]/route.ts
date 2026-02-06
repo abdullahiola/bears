@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+
 export async function GET(
     request: NextRequest,
     { params }: { params: Promise<{ path: string[] }> }
@@ -7,6 +10,8 @@ export async function GET(
     const { path } = await params
     const videoPath = path.join('/')
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001'
+
+    console.log(`Proxying video: ${apiUrl}/videos/${videoPath}`)
 
     try {
         // Forward range header for video streaming
@@ -22,19 +27,21 @@ export async function GET(
         const response = await fetch(`${apiUrl}/videos/${videoPath}`, { headers })
 
         if (!response.ok && response.status !== 206) {
+            console.error(`Video fetch failed: ${response.status}`)
             return NextResponse.json({ error: 'Video not found' }, { status: 404 })
         }
 
         const contentType = response.headers.get('content-type') || 'video/mp4'
         const contentLength = response.headers.get('content-length')
         const contentRange = response.headers.get('content-range')
-        const acceptRanges = response.headers.get('accept-ranges')
 
-        // Stream the response
+        // For Vercel, we need to buffer the response
+        const buffer = await response.arrayBuffer()
+
         const responseHeaders: Record<string, string> = {
             'Content-Type': contentType,
+            'Accept-Ranges': 'bytes',
             'Cache-Control': 'public, max-age=3600',
-            'Accept-Ranges': acceptRanges || 'bytes',
         }
 
         if (contentLength) {
@@ -44,7 +51,7 @@ export async function GET(
             responseHeaders['Content-Range'] = contentRange
         }
 
-        return new NextResponse(response.body, {
+        return new NextResponse(buffer, {
             status: response.status,
             headers: responseHeaders,
         })
