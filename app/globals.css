@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 220 20% 4%;
+    --foreground: 220 10% 92%;
+    --card: 220 18% 7%;
+    --card-foreground: 220 10% 92%;
+    --popover: 220 18% 7%;
+    --popover-foreground: 220 10% 92%;
+    --primary: 0 72% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 12%;
+    --secondary-foreground: 220 10% 85%;
+    --muted: 220 14% 12%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 0 72% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 14% 14%;
+    --input: 220 14% 14%;
+    --ring: 0 72% 50%;
+    --chart-1: 0 72% 50%;
+    --chart-2: 0 50% 40%;
+    --chart-3: 220 10% 40%;
+    --chart-4: 220 10% 60%;
+    --chart-5: 0 60% 65%;
+    --radius: 0.5rem;
+    --sidebar-background: 220 18% 6%;
+    --sidebar-foreground: 220 10% 85%;
+    --sidebar-primary: 0 72% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 12%;
+    --sidebar-accent-foreground: 220 10% 85%;
+    --sidebar-border: 220 14% 14%;
+    --sidebar-ring: 0 72% 50%;
+    --bear-gold: 45 90% 55%;
+    --bear-crimson: 0 72% 50%;
+    --bear-blood: 0 80% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
